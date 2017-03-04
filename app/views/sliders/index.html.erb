@@ -1,0 +1,95 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Sliders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sliders.each do |slider| %>
+      <tr>
+        <td><%= slider.title %></td>
+        <td><%= slider.content %></td>
+        <td><%= link_to 'Show', slider %></td>
+        <td><%= link_to 'Edit', edit_slider_path(slider) %></td>
+        <td><%= link_to 'Destroy', slider, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Slider', new_slider_path %>
+
+<!-- Carousel -->
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators dot nav -->
+  <ol class="carousel-indicators">
+
+    <% @sliders.each_with_index do |slider, index| %>
+      <% if index == 0 %>
+
+        <li data-target="#myCarousel" data-slide-to=<%= index %> class="active"></li>
+
+      <% else %>
+
+        <li data-target="#myCarousel" data-slide-to=<%= index %> ></li>
+
+      <% end %>
+    <% end %>
+
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+
+    <% @sliders.each do |slider| %>
+      <% if slider == @sliders.first %>
+
+        <div class="item active">
+          <%= image_tag slider.image.url(:large), alt: slider.title + " not found", class: "img-responsive"%>
+          <div class="carousel-caption">
+            <h3><%= slider.title %></h3>
+            <p><%= slider.content %></p>
+          </div>
+        </div>
+
+      <% else %>
+
+        <div class="item">
+          <%= image_tag slider.image.url(:large), alt: slider.title + " not found", class: "img-responsive"%>
+          <div class="carousel-caption">
+            <h3><%= slider.title %></h3>
+            <p><%= slider.content %></p>
+          </div>
+        </div>
+
+      <% end %>
+    <% end %>
+
+  </div>
+
+  <!-- Controls for next and prev buttons -->
+  <a class="carousel-control left" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+
+  <a class="carousel-control right" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+
+</div>
+
+
+
+<h1>BREAK<br><br></h1>
+
+<!-- Need to add title and content to this helper -->
+<%= slider_for(@sliders) %>
