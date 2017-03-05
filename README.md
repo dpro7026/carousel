@@ -35,3 +35,6 @@ Cf api https://api.ng.bluemix.net
 Cf login
 Cf target –o organisation –s dev
 Cf push
+
+
+In the Bluemix dashboard for the app, add a new service and choose Object storage free service. The app will re-stage.

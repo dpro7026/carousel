@@ -6,7 +6,8 @@ applications:
   name: outthinkcoaching
   host: outthinkcoaching
   disk_quota: 1024M
-  command: rake db:migrate && bin/rails server -p $PORT -e $RAILS_ENV
+  command: rake db:reset && rake db:migrate && bin/rails server -p $PORT -e $RAILS_ENV
   services:
   - availability-monitoring-auto
   - ElephantSQL-7j
+  - Object Storage-f7
