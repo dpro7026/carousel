@@ -1,24 +1,37 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application uses a basic rails scaffold so a user can edit 'sliders' for the carousel found on the index page.
 
-Things you may want to cover:
+The carousel reads from the sliders model to generate images, title and content captions.
 
-* Ruby version
+The application is running on IBM Bluemix cloud hosting (which a user can create a free 30 day trial account), and uses a Postgres ElephantSQL database.
 
-* System dependencies
+Cloud storage uses ephemeral memory (based on the instance) rather than local memory, so paperclip's normal functionality of storing the image in the pubic folder and using a reference will fail when the application instance changes.
 
-* Configuration
+The concept is analogous to the tutorial for using Heroku hosting and Amazon S3 cloud storage for images:
+* https://devcenter.heroku.com/articles/paperclip-s3
 
-* Database creation
+The only tutorial related to this I could find:
+* https://www.altoros.com/blog/the-ibm-bluemix-object-storage-service-in-ruby-projects/
 
-* Database initialization
+Bluemix runs on SoftLayer. This may help too:
+* https://github.com/fog/fog-softlayer/blob/master/examples/storage.md
 
-* How to run the test suite
+The method I used to deploy on Bluemix:
+Create a ruby instance and an ElephantSQL instance. On the ruby instance, choose connect existing and connect the ElephantSQL DB.
 
-* Services (job queues, cache servers, search engines, etc.)
+Using the Cloud Foundry Interface (CFI):
+Pushing to Bluemix:
+Added to gemfile:
+gem 'rails_12factor', group: :production
+Then run:
+Bundle install
 
-* Deployment instructions
+Added to manifest.yml:
+command: rake db:migrate && bin/rails server -p $PORT -e $RAILS_ENV
 
-* ...
+Then ran:
+Cf api https://api.ng.bluemix.net
+Cf login
+Cf target –o organisation –s dev
+Cf push

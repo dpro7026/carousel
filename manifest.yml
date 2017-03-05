@@ -1,0 +1,12 @@
+applications:
+- path: .
+  memory: 256M
+  instances: 1
+  domain: mybluemix.net
+  name: outthinkcoaching
+  host: outthinkcoaching
+  disk_quota: 1024M
+  command: rake db:migrate && bin/rails server -p $PORT -e $RAILS_ENV
+  services:
+  - availability-monitoring-auto
+  - ElephantSQL-7j
