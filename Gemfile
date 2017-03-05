@@ -39,6 +39,9 @@ gem "paperclip", "~> 5.0.0"
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
+gem 'fog-openstack', github: 'fog/fog-openstack'
+gem 'fog'
+
 # For IBM Bluemix cloud storage
 # gem 'fog'
 # gem 'fog-openstack', github: 'fog/fog-openstack'
