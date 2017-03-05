@@ -6,7 +6,7 @@ applications:
   name: outthinkcoaching
   host: outthinkcoaching
   disk_quota: 1024M
-  command: rake db:migrate && bin/rails server -p $PORT -e $RAILS_ENV
+  command: bundle install && rake db:migrate && bin/rails server -p $PORT -e $RAILS_ENV
   services:
   - availability-monitoring-auto
   - ElephantSQL-7j
