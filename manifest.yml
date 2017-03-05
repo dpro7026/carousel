@@ -10,3 +10,4 @@ applications:
   services:
   - availability-monitoring-auto
   - ElephantSQL-7j
+  - Object Storage-f7
